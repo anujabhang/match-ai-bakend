@@ -1,4 +1,4 @@
-package com.anuj.match_ai_backend.entities.Profiles;
+package com.anuj.match_ai_backend.entities.profiles;
 
 public record Profile(
         String id,
