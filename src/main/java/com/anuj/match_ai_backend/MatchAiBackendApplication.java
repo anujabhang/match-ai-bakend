@@ -29,7 +29,7 @@ public class MatchAiBackendApplication implements CommandLineRunner {
 
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		Profile profile = new Profile(
 			"1",
 				"Anuj",
