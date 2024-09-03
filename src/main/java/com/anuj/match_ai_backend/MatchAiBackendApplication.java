@@ -6,6 +6,10 @@ import com.anuj.match_ai_backend.entities.profiles.Gender;
 import com.anuj.match_ai_backend.entities.profiles.Profile;
 import com.anuj.match_ai_backend.repositories.ConversationRepository;
 import com.anuj.match_ai_backend.repositories.ProfileRepository;
+import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.ollama.OllamaChatModel;
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,52 +19,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
-public class MatchAiBackendApplication implements CommandLineRunner {
+public class MatchAiBackendApplication {
 
-	@Autowired
-	ProfileRepository profileRepository;
-
-	@Autowired
-	ConversationRepository conversationRepository;
+//	private static OllamaChatModel chatModel;
+//
+//
+//	@Autowired
+//	public MatchAiBackendApplication(OllamaChatModel chatModel) {
+//		this.chatModel = chatModel;
+//	}
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MatchAiBackendApplication.class, args);
-	}
 
 
-	@Override
-	public void run(String... args) {
-		Profile profile = new Profile(
-			"1",
-				"Anuj",
-				"Abhang",
-				21,
-				"Mongolian",
-				Gender.Male,
-				"Love to Travel",
-				"hi.jpg",
-				"INTP"
-
-		);
+//		Prompt prompt = new Prompt("Who is Anuj Abhang");
+//		ChatResponse response = chatModel.call(prompt);
+//		System.out.println(response.getResult().getOutput());
 
 
-		Conversation conversation = new Conversation(
-				"1",
-				profile.id(),
 
-				List.of(
-						new ChatMessage(
-								"Hello MatchAI",
-								LocalDateTime.now(),
-								profile.id()
-						)
-				)
-		);
 
-		profileRepository.save(profile);
-		profileRepository.findAll().forEach(System.out::println);
-
-		conversationRepository.save(conversation);
-		conversationRepository.findAll().forEach(System.out::println);
 	}
 }

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.anuj</groupId>
-	<artifactId>match-ai-bakend</artifactId>
+	<artifactId>match-ai-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>match-ai-bakend</name>
+	<name>match-ai-backend</name>
 	<description>Backend for MatchAI app</description>
 	<url/>
 	<licenses>
