@@ -5,6 +5,7 @@ import com.anuj.match_ai_backend.repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +21,13 @@ public class ProfileService {
 
     public Optional<Profile> findProfileById(String id) {
         return profileRepository.findById(id);
+    }
+
+    public List<Profile> getAllProfiles(){
+        return profileRepository.findAll();
+    }
+
+    public Profile getRandomProfile(){
+        return profileRepository.getRandomProfile();
     }
 }

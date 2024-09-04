@@ -6,6 +6,7 @@ import com.anuj.match_ai_backend.entities.profiles.Gender;
 import com.anuj.match_ai_backend.entities.profiles.Profile;
 import com.anuj.match_ai_backend.repositories.ConversationRepository;
 import com.anuj.match_ai_backend.repositories.ProfileRepository;
+import com.anuj.match_ai_backend.services.ProfileCreationService;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
@@ -19,27 +20,41 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
-public class MatchAiBackendApplication {
+public class MatchAiBackendApplication implements CommandLineRunner{
 
-//	private static OllamaChatModel chatModel;
-//
-//
-//	@Autowired
-//	public MatchAiBackendApplication(OllamaChatModel chatModel) {
-//		this.chatModel = chatModel;
-//	}
+	ProfileCreationService profileCreationService;
+	ProfileRepository profileRepository;
+	ConversationRepository conversationRepository;
+
+
+	public MatchAiBackendApplication(ProfileCreationService profileCreationService, ProfileRepository profileRepository, ConversationRepository conversationRepository) {
+		this.profileCreationService = profileCreationService;
+		this.profileRepository = profileRepository;
+		this.conversationRepository = conversationRepository;
+	}
+
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(MatchAiBackendApplication.class, args);
 
 
-//		Prompt prompt = new Prompt("Who is Anuj Abhang");
-//		ChatResponse response = chatModel.call(prompt);
-//		System.out.println(response.getResult().getOutput());
 
 
 
+	}
 
+
+	@Override
+	public void run(String... args) {
+		clearAllData();
+		profileCreationService.saveProfilesToDB();
+
+	}
+
+	private void clearAllData() {
+		conversationRepository.deleteAll();
+//			matchRepository.deleteAll();
+		profileRepository.deleteAll();
 	}
 }

@@ -23,13 +23,12 @@ public class ConversationController {
 
     ProfileService profileService;
 
-    ChatClient chatClient;
 
     @Autowired
-    public ConversationController(ConversationService conversationService, ProfileService profileService, ChatClient.Builder chatClient) {
+    public ConversationController(ConversationService conversationService, ProfileService profileService) {
         this.conversationService = conversationService;
         this.profileService = profileService;
-        this.chatClient = chatClient.build();
+
     }
 
 
@@ -72,14 +71,13 @@ public class ConversationController {
     }
 
 
-    @GetMapping("/aiResponse")
-    public String aiResponse(){
-        return chatClient.prompt()
-                .user("Tell me a joke")
-                .call()
-                .content();
-    }
-
+//    @GetMapping("/aiResponse")
+//    public String aiResponse(){
+//        return chatClient.prompt()
+//                .user("Tell me a joke")
+//                .call()
+//                .content();
+//    }
 
 
 }
