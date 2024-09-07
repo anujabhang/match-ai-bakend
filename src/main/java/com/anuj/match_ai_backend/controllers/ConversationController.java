@@ -63,6 +63,9 @@ public class ConversationController {
 
     }
 
+//    @GetMapping("/conversations/{conversationId}")
+//    public Conversation getProfileResponse()
+
 
     //CreateConversationRequest contains entire postMapping data and out of which we are retrieving profile id
     public record CreateConversationRequest(

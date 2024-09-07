@@ -4,6 +4,7 @@ package com.anuj.match_ai_backend.controllers;
 import com.anuj.match_ai_backend.entities.profiles.Profile;
 import com.anuj.match_ai_backend.services.ProfileService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public class ProfileController {
     @GetMapping("/profile")
     public List<Profile> getAllProfiles(){
         return profileService.getAllProfiles();
+    }
+    @GetMapping("/profile/{profileId}")
+    public Profile getAllProfiles(@PathVariable String profileId){
+        return profileService.getProfileById(profileId);
     }
 
     @GetMapping("/profile/random")

@@ -7,6 +7,6 @@ import java.time.LocalTime;
 public record ChatMessage(
         String messageText,
         LocalDateTime time,
-        String profileId
+        String authorId
 ) {
 }

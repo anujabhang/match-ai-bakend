@@ -5,6 +5,7 @@ import com.anuj.match_ai_backend.entities.conversations.Conversation;
 import com.anuj.match_ai_backend.entities.profiles.Gender;
 import com.anuj.match_ai_backend.entities.profiles.Profile;
 import com.anuj.match_ai_backend.repositories.ConversationRepository;
+import com.anuj.match_ai_backend.repositories.MatchRepository;
 import com.anuj.match_ai_backend.repositories.ProfileRepository;
 import com.anuj.match_ai_backend.services.ProfileCreationService;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -25,12 +26,14 @@ public class MatchAiBackendApplication implements CommandLineRunner{
 	ProfileCreationService profileCreationService;
 	ProfileRepository profileRepository;
 	ConversationRepository conversationRepository;
+	MatchRepository matchRepository;
 
 
-	public MatchAiBackendApplication(ProfileCreationService profileCreationService, ProfileRepository profileRepository, ConversationRepository conversationRepository) {
+	public MatchAiBackendApplication(ProfileCreationService profileCreationService, ProfileRepository profileRepository, ConversationRepository conversationRepository, MatchRepository matchRepository) {
 		this.profileCreationService = profileCreationService;
 		this.profileRepository = profileRepository;
 		this.conversationRepository = conversationRepository;
+		this.matchRepository = matchRepository;
 	}
 
 
@@ -47,14 +50,14 @@ public class MatchAiBackendApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) {
-		clearAllData();
-		profileCreationService.saveProfilesToDB();
+//		clearAllData();
+//		profileCreationService.saveProfilesToDB();
 
 	}
 
 	private void clearAllData() {
 		conversationRepository.deleteAll();
-//			matchRepository.deleteAll();
+			matchRepository.deleteAll();
 		profileRepository.deleteAll();
 	}
 }
