@@ -4,14 +4,12 @@ package com.anuj.match_ai_backend.controllers;
 import com.anuj.match_ai_backend.entities.conversations.Conversation;
 import com.anuj.match_ai_backend.entities.matches.Match;
 import com.anuj.match_ai_backend.services.MatchService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MatchController {
 
     MatchService matchService;
@@ -22,20 +20,21 @@ public class MatchController {
 
     @PostMapping("/matches")
     public Match createNewMatch(@RequestBody CreateMatchRequest request) {
-
+        String userId = request.userId();
+        System.out.println(userId);
+        System.out.println("---------------------------------------");
         String profileId = request.profileId();
-
-        return matchService.createNewMatch(profileId);
-
+        return matchService.createNewMatch(userId, profileId);
     }
 
     public record CreateMatchRequest(
+            String userId,
             String profileId
-    ) {
-    }
+    ) {}
 
-    @GetMapping("/matches")
-    public List<Match> getAllMatches(){
-        return matchService.getAllMatches();
+
+    @GetMapping("/{userId}/matches")
+    public List<Match> getAllMatches(@PathVariable String userId){
+        return matchService.getAllMatches(userId);
     }
 }

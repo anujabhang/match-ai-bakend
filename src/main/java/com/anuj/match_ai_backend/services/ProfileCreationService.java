@@ -50,11 +50,11 @@ public class ProfileCreationService {
     @Value("${startup-actions.initializeProfiles}")
     private Boolean initializeProfiles;
 
-    @Value("${matchai.lookingForGender}")
-    private String lookingForGender;
+//    @Value("${matchai.lookingForGender}")
+//    private String lookingForGender;
 
-    @Value("#{${matchai.character.user}}")
-    private Map<String, String> userProfileProperties;
+//    @Value("#{${matchai.character.user}}")
+//    private Map<String, String> userProfileProperties;
 
     private ProfileRepository profileRepository;
 
@@ -225,19 +225,19 @@ public class ProfileCreationService {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Profile profile = new Profile(
-                userProfileProperties.get("id"),
-                userProfileProperties.get("firstName"),
-                userProfileProperties.get("lastName"),
-                Integer.parseInt(userProfileProperties.get("age")),
-                userProfileProperties.get("ethnicity"),
-                Gender.valueOf(userProfileProperties.get("gender").toUpperCase()),
-                userProfileProperties.get("bio"),
-                userProfileProperties.get("imageUrl"),
-                userProfileProperties.get("myersBriggsPersonalityType")
-        );
-        System.out.println(userProfileProperties);
-        profileRepository.save(profile);
+//        Profile profile = new Profile(
+//                userProfileProperties.get("id"),
+//                userProfileProperties.get("firstName"),
+//                userProfileProperties.get("lastName"),
+//                Integer.parseInt(userProfileProperties.get("age")),
+//                userProfileProperties.get("ethnicity"),
+//                Gender.valueOf(userProfileProperties.get("gender").toUpperCase()),
+//                userProfileProperties.get("bio"),
+//                userProfileProperties.get("imageUrl"),
+//                userProfileProperties.get("myersBriggsPersonalityType")
+//        );
+//        System.out.println(userProfileProperties);
+//        profileRepository.save(profile);
 
     }
 

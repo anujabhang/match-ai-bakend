@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
 public class ConversationController {
 
     ConversationService conversationService;
@@ -34,11 +35,9 @@ public class ConversationController {
 
     @PostMapping("/conversations")
     public Conversation createNewConversation(@RequestBody CreateConversationRequest request) {
-
+        String userId = request.userId();
         String profileId = request.profileId();
-
-        return conversationService.createNewConversation(profileId);
-
+        return conversationService.createNewConversation(userId, profileId);
     }
 
     @PostMapping("/conversations/{conversationId}")
@@ -48,13 +47,11 @@ public class ConversationController {
 
 
     }
-
-    @GetMapping("/conversations")
-    public List<Conversation> getAllConversations() {
-
-        return conversationService.getAllConversations();
-
-    }
+//TODO:Imp
+//    @GetMapping("/users/{userId}/conversations")
+//    public List<Conversation> getAllConversations(@PathVariable String userId) {
+//        return conversationService.getAllConversations(userId);
+//    }
 
     @GetMapping("/conversations/{conversationId}")
     public Conversation getConversationById(@PathVariable String conversationId) {
@@ -69,6 +66,7 @@ public class ConversationController {
 
     //CreateConversationRequest contains entire postMapping data and out of which we are retrieving profile id
     public record CreateConversationRequest(
+            String userId,
             String profileId
     ) {
     }
